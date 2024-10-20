@@ -6,11 +6,17 @@ import FeaturedMovie from '@/components/featured-movies';
 import Categories from "@/components/categories"
 import MoviesSection from '@/components/movies-section';
 
-function HomeContainer() {
+function HomeContainer({ selectedCategory }) {
     return (
         <div>
             <FeaturedMovie movie={Movies.results[0]} />
             <Categories categories={Genres.genres.slice(0, 5)} />
+            {selectedCategory.movies.length > 0 && (
+                <MoviesSection
+                    title={Genres.genres.find((genre) => `${genre.id}` === selectedCategory.id).name}
+                    // KATEGORİLERDE  YAZAN İLE SEÇİLEN İD AYNIYSA KATEGORİ ADINI BELİRLER VE YAZDIRIR
+                    movies={selectedCategory.movies} />
+            )}
             <MoviesSection
                 title="Populer Films"
                 movies={Movies.results.slice(1, 7)}

@@ -12,6 +12,6 @@ function CategoriesLoading() {
                 ))}
         </div>
     );
-}
+} 
 
 export default CategoriesLoading 

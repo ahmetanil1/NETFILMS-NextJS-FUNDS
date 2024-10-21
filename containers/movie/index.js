@@ -1,3 +1,4 @@
+
 import React from 'react'
 import FeaturedMovie from "@/components/featured-movies";
 

@@ -1,3 +1,4 @@
+
 import React from 'react'
 
 import Movies from "@/mocks/movies.json";

@@ -2,29 +2,40 @@
 import React from 'react'
 import HomeContainer from '@/containers/home'
 
-import Movies from "@/mocks/movies.json";
+import {
+    fetchPopularMovies,
+    fetchTopRatedMovies,
+    fetchGenres,
+    fetchMoviesByGenre
+} from "@/services/movie"
 
-async function delay(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms))
-}
+
 async function homePage({ params }) {
-    await delay(2000);
     // console.log(params);
-    let selectedCategory;
+    const pagePromises = [
+        fetchPopularMovies(),
+        fetchTopRatedMovies(),
+        fetchGenres(),
+    ]
 
-    if (params.category?.length > 0) {
-        // CATEGORY? YAPMA NEDENİ PARAMSDAN KATEGORİ GELİP GELMEDİĞİNİ KONTROL ET GELİRSE LENGTH AL 
-        selectedCategory = true;
+    if (!!params.category?.length) {
+        pagePromises.push(fetchMoviesByGenre(params.category[0]));
     }
+
+    const [popularMovies, topRatedMovies, genres, selectedCategoryMovies] =
+        await Promise.all(pagePromises)
+
     return (
         <HomeContainer
-            selectedCategory={{
+            categories={genres}
+            popularMovies={popularMovies}
+            topRatedMovies={topRatedMovies}
+            selectedCategories={{
                 id: params.category?.[0] ?? "",
-                movies: selectedCategory ? Movies.results.slice(0, 7) : []
-                // SELECTEDCATEGORY BULURSAN MOVİESİN RESULT DEĞERİNİN 0 7 ARASIfDA BÖL VE GÖSTER DEMEKTİR 
+                movies: selectedCategoryMovies ?? [],
             }}
         />
-    )
+    );
 }
 
 export default homePage

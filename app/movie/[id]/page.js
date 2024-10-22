@@ -1,22 +1,18 @@
 
 import React from 'react'
 import MovieContainer from '@/containers/movie'
-import Movies from "@/mocks/movies.json"
 import { notFound } from 'next/navigation';
 
-async function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms))
-}
+import { fetchSingleMovie } from '@/services/movie';
+
+
 
 async function MoviePage({ params, searchParams }) {
-  await delay(500)
   // VERİTABANI OLMADAN LOADİNG ERKANI GÖSTERMEK İÇİN YAPILDI 
   // const movieDetail = Movies.results.find((movie) => movie.id === Number(params.id))
-  const movieDetail = Movies.results.find(
-    (movie) => movie.id.toString() === params.id
-  );
+  const movieDetail = await fetchSingleMovie(params.id);
 
-  if (!movieDetail) {
+  if (movieDetail.success === false) {
     notFound()
   }
   if (searchParams.error === "true") {

@@ -13,9 +13,7 @@ export default function RootLayout({ children }) {
         <html className={InterFontFamily.className}>
             <body className="container">
                 <Header />
-                <main>
-                    {children}
-                </main>
+                <main>{children}</main>
                 <Footer />
             </body>
         </html >

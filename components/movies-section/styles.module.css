@@ -27,4 +27,31 @@
 .movie:hover {
     z-index: 9;
     transform: scale(1.25);
+    opacity: .7;
+}
+
+
+.ratingWrapper {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.ratingText {
+    margin-right: 4px;
+}
+
+.starIcon {
+    color: gold;
+}
+
+.movieImage {
+    border-radius: 5px;
+    object-fit: cover;
 }

@@ -22,6 +22,14 @@
     max-width: 50ch;
 }
 
+.movie {
+    overflow: hidden;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
 .shortOverview {
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -76,4 +84,18 @@
     z-index: -2;
     max-height: 100vh;
     object-fit: cover;
+}
+
+.ratingWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.ratingText {
+    margin-right: 6px;
+}
+
+.starIcon {
+    color: gold;
+    margin-bottom: 2px;
 }

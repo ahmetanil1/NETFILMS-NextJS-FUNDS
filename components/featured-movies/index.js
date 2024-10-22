@@ -1,7 +1,8 @@
-import React from 'react'
-import Link from "next/link"
-import Image from 'next/image';
-import { FaPlus } from "react-icons/fa"
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { FaPlus, FaStar } from "react-icons/fa";
+
 import styles from "./styles.module.css";
 
 function FeaturedMovie({ movie = {}, isCompact = true }) {
@@ -10,16 +11,27 @@ function FeaturedMovie({ movie = {}, isCompact = true }) {
     return (
         <div className={styles.movieWrapper}>
             <h1 className={styles.movieTitle}>{title}</h1>
-
-            <p className={`${styles.overview} ${isCompact ? styles.shortOverview : ""}`}>{overview}</p>
-
-            <div className={styles.actionButtons}>
-                <Link className={styles.playButton} href={`/movie/${movie.id}`}>Play</Link>
-                <button className={styles.addButton}><FaPlus /></button>
+            <p
+                className={`${styles.overview} ${isCompact ? styles.shortOverview : ""
+                    }`}
+            >
+                {overview}
+            </p>
+            <div className={styles.ratingWrapper}>
+                <span className={styles.ratingText}>IMDB: {movie.vote_average.toFixed(1)}</span>
+                <FaStar className={styles.starIcon} />
             </div>
 
+            <div className={styles.actionButtons}>
+                <Link className={styles.playButton} href={`/movie/${movie.id}`}>
+                    Play
+                </Link>
+                <button className={styles.addButton}>
+                    <FaPlus />
+                </button>
+            </div>
             <div className={styles.moviePoster}>
-                <div className={styles.moivePosterOverlay}></div>
+                <div className={styles.moviePosterOverlay}></div>
                 <Image
                     unoptimized
                     src={`https://image.tmdb.org/t/p/original${poster_path}`}
@@ -27,9 +39,8 @@ function FeaturedMovie({ movie = {}, isCompact = true }) {
                     fill
                 />
             </div>
-        </div >
-
-    )
+        </div>
+    );
 }
 
-export default FeaturedMovie
+export default FeaturedMovie;

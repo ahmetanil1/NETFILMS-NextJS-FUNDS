@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import CategoriesLoading from '@/components/categories/loading'
 import FeatureMovieLoading from '@/components/featured-movies/loading'

@@ -11,12 +11,11 @@ async function MoviePage({ params, searchParams }) {
   // VERİTABANI OLMADAN LOADİNG ERKANI GÖSTERMEK İÇİN YAPILDI 
   // const movieDetail = Movies.results.find((movie) => movie.id === Number(params.id))
   const movieDetail = await fetchSingleMovie(params.id);
-  console.log(movieDetail.success);
 
   if (movieDetail.success === false) {
     notFound()
   }
-  
+
   if (searchParams.error === "true") {
     throw new Error("Error Happened")
   }

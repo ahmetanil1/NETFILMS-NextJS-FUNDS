@@ -11,7 +11,6 @@ import {
 
 
 async function homePage({ params }) {
-    // console.log(params);
     const pagePromises = [
         fetchPopularMovies(),
         fetchTopRatedMovies(),
